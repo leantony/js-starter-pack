@@ -12,18 +12,6 @@ var leantony = {};
             // ajax setup. this will send laravel csrf token on every ajax request
             this.setupAjax();
 
-            // select2 initialization
-            leantony.s2({});
-            // our modal plugin
-            leantony.modal({});
-
-            // data-remotes
-            leantony.ajax.doRemote($('.data-remote'), 'click');
-            leantony.ajax.doRemote($('form[data-remote]'), 'submit');
-
-            // table links
-            this.tableLinks({element: 'linkable'});
-
             if (callbacks) {
                 callbacks();
             }
