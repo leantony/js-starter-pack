@@ -15,7 +15,7 @@ leantony.modal = leantony.modal || {};
             // when the modal is shown
             onShown: function (e, modal) {
                 if(modal.options.onShown){
-                    modal.options.onShown(e, modal);
+                    modal.options.onShown(e);
                 }
             },
             onHidden: function (e, modal) {
@@ -31,10 +31,8 @@ leantony.modal = leantony.modal || {};
                 }
             },
             onLoaded: function (e, modal) {
-                // load any extras
-                leantony.s2({});
                 if(modal.options.onLoaded){
-                    modal.options.onLoaded(e, modal);
+                    modal.options.onLoaded(e);
                 }
             }
         };
