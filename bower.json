@@ -1,9 +1,9 @@
 {
-  "name": "project utilities",
+  "name": "js-starter-pack",
   "authors": [
     "leantony <chachaantony@gmail.com>"
   ],
-  "description": "simple utility js scripts for a project",
+  "description": "simple utility js scripts and plugins for a project",
   "main": "",
   "license": "MIT",
   "homepage": "",
