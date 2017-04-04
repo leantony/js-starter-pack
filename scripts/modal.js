@@ -24,7 +24,10 @@ leantony.modal = leantony.modal || {};
             onShow: function (e, modal) {
                 var element = $('#' + modal.options.modal_id);
                 if(modal.options.onShow){
-                    modal.options.onShow(e, element);
+                    var spinner = modal.options.onShow(e, element);
+                    if(spinner){
+                        element.find('.modal-content').html(spinner);
+                    }
                 }
             },
             onLoaded: function (e, modal) {
