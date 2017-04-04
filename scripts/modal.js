@@ -14,8 +14,10 @@ leantony.modal = leantony.modal || {};
             modalTriggerSelector: '.show_modal_form',
             // when the modal is shown
             onShown: function (e, modal) {
-                if(modal.options.onShown){
-                    modal.options.onShown(e);
+                if(modal){
+                    if(modal.options.onShown){
+                        modal.options.onShown(e);
+                    }
                 }
             },
             onHidden: function (e, modal) {
