@@ -6,41 +6,25 @@ leantony.ajax = leantony.ajax || {};
         /**
          * Search through the table and refresh it
          *
-         * @param form
-         * @param callback
          */
-        searchTable: function (form, callback) {
-            var el = $(form.target);
+        filterTable: function (element) {
+            var el = $(element);
             var pjaxContainer = el.data('pjax-target');
-            console.log(el.attr('action'));
-            var $this = this;
-            $.ajax({
-                method: 'GET',
-                url: el.attr('action'),
-                data: el.serialize(),
-                dataType: 'html',
-                beforeSend: function () {
-                    leantony.utils.startBlockUI('Please wait ...')
-                },
-                complete: function () {
-                    leantony.utils.stopBlockUI();
-                },
-                success: function (data) {
-                    if (pjaxContainer) {
-                        $.pjax.reload({container: pjaxContainer});
-                    } else {
-                        if (callback) {
-                            callback(data);
-                        } else {
-                            $this.loadLink(el.attr('action'), 50);
-                        }
-                    }
-                },
-                error: function (XHR) {
-                    leantony.notify({text: XHR.responseText || "An error occurred", type: "error"});
-                }
-            });
 
+            el.on('submit', function(e){
+                "use strict";
+                e.preventDefault();
+                $.pjax.submit(e, pjaxContainer, {
+                    "push": true,
+                    "data": {
+                        'q': el.serialize()
+                    },
+                    "replace": false,
+                    "timeout": 5000,
+                    "scrollTo": 0,
+                    maxCacheLength: 0
+                })
+            });
         },
 
         /**
