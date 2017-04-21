@@ -124,7 +124,7 @@ leantony.ajax = leantony.ajax || {};
                             // refreshing the page
                             if (refresh) {
 
-                                utils.loadLink(obj.attr('href'), 50);
+                                leantony.utils.loadLink(obj.attr('href'), 50);
                             }
                             // reload a pjax container
                             if (pjaxContainer) {
@@ -134,7 +134,7 @@ leantony.ajax = leantony.ajax || {};
                             // we need to redirect
                             if (data.redirectTo !== undefined) {
 
-                                utils.loadLink(data.redirectTo, 50);
+                                leantony.utils.loadLink(data.redirectTo, 50);
                             }
                         },
                         error: function (data) {
