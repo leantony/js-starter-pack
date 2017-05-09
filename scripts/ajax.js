@@ -16,9 +16,7 @@ leantony.ajax = leantony.ajax || {};
                 e.preventDefault();
                 $.pjax.submit(e, pjaxContainer, {
                     "push": true,
-                    "data": {
-                        'q': el.serialize()
-                    },
+                    "data": el.serialize(),
                     "replace": false,
                     "timeout": 5000,
                     "scrollTo": 0,
