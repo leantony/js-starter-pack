@@ -52,7 +52,7 @@ leantony.s2 = leantony.s2 || {};
 
             if (selectedValue && triggerLink && targetSelect) {
                 // clear previous
-                $(targetSelect).val([]).trigger('change');
+                $(targetSelect).empty().trigger('change');
 
                 $.ajax({
                     url: triggerLink,
@@ -73,8 +73,7 @@ leantony.s2 = leantony.s2 || {};
 
                         $(targetSelect).select2($.extend($this.opts.select2, {
                             data: data()
-                        }));
-                        selectedElement.trigger('change');
+                        })).trigger('change');
                     },
                     error: function (data) {
                         leantony.ajax.handleAjaxError(data, null)
