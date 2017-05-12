@@ -3,6 +3,40 @@ leantony.ajax = leantony.ajax || {};
 (function ($) {
 
     leantony.ajax = {
+
+        sortTable: function (rowClass) {
+            var item = $(rowClass);
+
+            if (item.length) {
+                item.click(function () {
+                    // Get the current column clicked
+                    var thisColumn = $(this).text();
+                    var order = $(this).data('order');
+                    var column = $(this).data('column');
+
+                    // Check if the column has changed
+                    if (thisColumn == column) {
+                        // column has not changed
+                        if (order == "asc") {
+                            order = "desc";
+                        } else {
+                            order = "asc";
+                        }
+                    } else {
+                        // column has changed
+                        column = thisColumn;
+                        order = "desc";
+                    }
+                    $(this).data('order', order);
+                    $(this).data('column', column);
+
+                    // Get the current column clicked
+                    var href = new URI($(this).attr('href')).addQuery("sort_dir", order);
+                    $(this).attr('href', href.normalizeQuery());
+                });
+            }
+        },
+
         /**
          * Search through the table and refresh it
          *
@@ -11,7 +45,7 @@ leantony.ajax = leantony.ajax || {};
             var el = $(element);
             var pjaxContainer = el.data('pjax-target');
 
-            el.on('submit', function(e){
+            el.on('submit', function (e) {
                 "use strict";
                 e.preventDefault();
                 $.pjax.submit(e, pjaxContainer, {
@@ -83,12 +117,14 @@ leantony.ajax = leantony.ajax || {};
                 var pjaxContainer = obj.data('pjax-target');
                 // check if we need to force a page refresh. will override shouldPjax
                 var refresh = obj.data('refresh-page');
-                // custom refresh msg
-                var waitingMsg = obj.data('waiting-message');
                 // a form
                 var isForm = obj.is('form');
                 // where to put a notification.
                 var notificationLocation = obj.data('notification');
+                // prevent or enable blocking of UI
+                var blockUi = obj.data('block-ui') || true;
+                // custom block UI msg
+                var waitingMsg = obj.data('waiting-message');
 
                 // console.log([event, isForm, obj.attr('action')]);
                 obj.on(event, function (e) {
@@ -104,10 +140,14 @@ leantony.ajax = leantony.ajax || {};
                         url: isForm ? obj.attr('action') : obj.attr('href'),
                         data: isForm ? obj.serialize() : null,
                         beforeSend: function () {
-                            leantony.utils.startBlockUI(waitingMsg || 'Please wait ...')
+                            if(blockUi){
+                                leantony.utils.startBlockUI(waitingMsg || 'Please wait ...')
+                            }
                         },
                         complete: function () {
-                            leantony.utils.stopBlockUI();
+                            if(blockUi){
+                                leantony.utils.stopBlockUI();
+                            }
                         },
                         success: function (data) {
                             // sometimes we don't need to display a notification

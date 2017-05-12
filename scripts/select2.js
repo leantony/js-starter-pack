@@ -19,32 +19,38 @@ leantony.s2 = leantony.s2 || {};
         if (elem.is('select')) {
             // ajax capabilities
             if (elem.data('ajax')) {
-                var $keyAttribute = elem.data('key') || 'id';
-                var $valueAttribute = elem.data('value') || 'name';
-                var tags = elem.data('tags');
-                var url = elem.data('url');
-                elem.select2({
-                    minimumInputLength: 2,
-                    tags: !!tags,
-                    ajax: {
-                        url: url,
-                        dataType: 'json',
-                        type: "GET",
-                        quietMillis: 50,
-                        data: function (params) {
-                            return params;
-                        },
-                        processResults: function (data) {
-                            return {
-                                results: $.map(data, function (item) {
-                                    return {
-                                        text: item[$valueAttribute],
-                                        id: item[$keyAttribute]
-                                    }
-                                })
-                            };
+
+                // support more than 1
+                elem.each(function(key, value){
+                    var $value = $(value);
+
+                    var $keyAttribute = $value.data('key') || 'id';
+                    var $valueAttribute = $value.data('value') || 'name';
+                    var tags = $value.data('tags');
+                    var url = $value.data('url');
+                    $value.select2({
+                        minimumInputLength: 2,
+                        tags: !!tags,
+                        ajax: {
+                            url: url,
+                            dataType: 'json',
+                            type: "GET",
+                            quietMillis: 50,
+                            data: function (params) {
+                                return params;
+                            },
+                            processResults: function (data) {
+                                return {
+                                    results: $.map(data, function (item) {
+                                        return {
+                                            text: item[$valueAttribute],
+                                            id: item[$keyAttribute]
+                                        }
+                                    })
+                                };
+                            }
                         }
-                    }
+                    });
                 });
             } else {
                 // default init
