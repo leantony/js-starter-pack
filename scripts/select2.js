@@ -51,6 +51,9 @@ leantony.s2 = leantony.s2 || {};
             var targetValue = selectedElement.data('trigger-search-value') || 'name';
 
             if (selectedValue && triggerLink && targetSelect) {
+                // clear previous
+                $(targetSelect).val([]).trigger('change');
+
                 $.ajax({
                     url: triggerLink,
                     type: 'GET',
