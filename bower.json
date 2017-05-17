@@ -30,6 +30,7 @@
     "PACE": "pace#^1.0.2",
     "autosize": "^3.0.17",
     "jquery-timeago": "timeago#^1.5.3",
-    "fine-uploader": "^5.11.8"
+    "fine-uploader": "^5.11.8",
+    "typeahead.js": "^0.11.1"
   }
 }

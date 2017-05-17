@@ -51,9 +51,6 @@ leantony.s2 = leantony.s2 || {};
             var targetValue = selectedElement.data('trigger-search-value') || 'name';
 
             if (selectedValue && triggerLink && targetSelect) {
-                // clear previous
-                $(targetSelect).empty().trigger('change');
-
                 $.ajax({
                     url: triggerLink,
                     type: 'GET',
@@ -61,7 +58,11 @@ leantony.s2 = leantony.s2 || {};
                         'query': selectedValue
                     },
                     dataType: 'json',
+                    cache: true,
                     success: function (response) {
+                        // clear previous
+                        $(targetSelect).empty().trigger('change');
+
                         var data = function () {
                             return $.map(response.data, function (item) {
                                 return {
@@ -78,7 +79,9 @@ leantony.s2 = leantony.s2 || {};
                     error: function (data) {
                         leantony.ajax.handleAjaxError(data, null)
                     }
-                })
+                });
+
+                $(targetSelect).unbind('change');
             }
         });
     };
@@ -109,7 +112,7 @@ leantony.s2 = leantony.s2 || {};
                 dataType: 'json',
                 type: "GET",
                 quietMillis: 100,
-                cache: cacheResult,
+                cache: true,
 
                 data: function (params) {
                     return params;
@@ -157,8 +160,11 @@ leantony.s2 = leantony.s2 || {};
                     // premark any elements
                     prepopulate(value, $this);
 
-                    // refresh any other select 2 target
-                    refreshTarget(value, $this);
+                    var triggerLink = $(value).data('trigger-href') || null;
+                    if(triggerLink){
+                        // refresh any other select 2 target
+                        refreshTarget(value, $this);
+                    }
                 });
             }
         }
