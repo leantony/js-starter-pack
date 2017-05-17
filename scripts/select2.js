@@ -6,8 +6,7 @@ leantony.s2 = leantony.s2 || {};
             dropdown_class: 'enhanced-dropdown',
             data_values: 'values',
             select2: {
-                theme: "classic",
-                placeholder: 'start typing to select a value...'
+                theme: "classic"
             }
         };
         this.opts = $.extend({}, defaults, opts || {});
