@@ -140,12 +140,12 @@ leantony.ajax = leantony.ajax || {};
                         url: isForm ? obj.attr('action') : obj.attr('href'),
                         data: isForm ? obj.serialize() : null,
                         beforeSend: function () {
-                            if(blockUi){
+                            if (blockUi) {
                                 leantony.utils.startBlockUI(waitingMsg || 'Please wait ...')
                             }
                         },
                         complete: function () {
-                            if(blockUi){
+                            if (blockUi) {
                                 leantony.utils.stopBlockUI();
                             }
                         },

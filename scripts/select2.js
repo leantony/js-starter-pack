@@ -4,7 +4,11 @@ leantony.s2 = leantony.s2 || {};
     var S2 = function (opts) {
         var defaults = {
             dropdown_class: 'enhanced-dropdown',
-            data_values: 'values'
+            data_values: 'values',
+            select2: {
+                theme: "classic",
+                placeholder: 'start typing to select a value...'
+            }
         };
         this.opts = $.extend({}, defaults, opts || {});
     };
@@ -104,7 +108,7 @@ leantony.s2 = leantony.s2 || {};
         // the url the request will be sent to
         var url = $value.data('url');
 
-        $value.select2({
+        var ajaxOptions = {
             minimumInputLength: 2,
             tags: !!tags,
             ajax: {
@@ -128,7 +132,9 @@ leantony.s2 = leantony.s2 || {};
                     };
                 }
             }
-        });
+        };
+
+        $value.select2($.extend($this.opts.select2 || {}, ajaxOptions));
 
         // refresh any other select 2 target
         refreshTarget($value, $this);
@@ -152,6 +158,7 @@ leantony.s2 = leantony.s2 || {};
                 });
             } else {
                 // default init
+                console.log($this.opts);
                 elem.select2($this.opts.select2 || {});
 
                 // support more than 1
@@ -161,7 +168,7 @@ leantony.s2 = leantony.s2 || {};
                     prepopulate(value, $this);
 
                     var triggerLink = $(value).data('trigger-href') || null;
-                    if(triggerLink){
+                    if (triggerLink) {
                         // refresh any other select 2 target
                         refreshTarget(value, $this);
                     }

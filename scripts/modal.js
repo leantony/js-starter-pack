@@ -14,8 +14,8 @@ leantony.modal = leantony.modal || {};
             modalTriggerSelector: '.show_modal_form',
             // when the modal is shown
             onShown: function (e, modal) {
-                if(modal){
-                    if(modal.options.onShown){
+                if (modal) {
+                    if (modal.options.onShown) {
                         modal.options.onShown(e);
                     }
                 }
@@ -25,15 +25,15 @@ leantony.modal = leantony.modal || {};
             },
             onShow: function (e, modal) {
                 var element = $('#' + modal.options.modal_id);
-                if(modal.options.onShow){
+                if (modal.options.onShow) {
                     var spinner = modal.options.onShow(e, element);
-                    if(spinner){
+                    if (spinner) {
                         element.find('.modal-content').html(spinner);
                     }
                 }
             },
             onLoaded: function (e, modal) {
-                if(modal.options.onLoaded){
+                if (modal.options.onLoaded) {
                     modal.options.onLoaded(e);
                 }
             }

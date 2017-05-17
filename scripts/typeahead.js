@@ -28,12 +28,12 @@ leantony.ty = leantony.ty || {};
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
                 url: url,
-                prepare: function(query, settings) {
+                prepare: function (query, settings) {
                     settings.url += '?term=' + query;
                     return settings;
                 },
-                filter: function(data) {
-                    return $.map(data, function(obj) {
+                filter: function (data) {
+                    return $.map(data, function (obj) {
                         console.log(obj);
                         return {
                             id: obj[key],
