@@ -1,6 +1,8 @@
 var leantony = {};
 
 (function ($) {
+    "use strict";
+
     leantony.utils = {
 
         /**
@@ -145,7 +147,7 @@ var leantony = {};
             if (type === 'error') {
                 html += title || "<strong>Please fix the following errors:</strong>";
             } else {
-                html += title || "<strong>Action completed.</strong>"
+                html += title || "<strong>Action completed.</strong>";
             }
             message = this.processMessageObject(message);
             return html + message + '</div>';

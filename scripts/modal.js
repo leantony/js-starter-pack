@@ -1,7 +1,8 @@
 leantony.modal = leantony.modal || {};
 
 (function ($) {
-    'use strict';
+    "use strict";
+
     var modal = function (options) {
         var defaultOptions = {
             // id of modal form template on page
@@ -92,7 +93,7 @@ leantony.modal = leantony.modal || {};
             var action = form.attr('action');
             var method = form.attr('method') || 'POST';
             // render notification on modal, instead of toast
-            var renderMessageOnPage = form.data('notification') == 'inline';
+            var renderMessageOnPage = form.data('notification') === 'inline';
             // check if we need to refresh any pjax container
             var pjaxTarget = form.data('pjax-target');
             var originalButtonHtml = $(e).html();

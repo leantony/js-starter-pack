@@ -1,64 +1,9 @@
 leantony.ajax = leantony.ajax || {};
 
 (function ($) {
+    "use strict";
 
     leantony.ajax = {
-
-        sortTable: function (rowClass) {
-            var item = $(rowClass);
-
-            if (item.length) {
-                item.click(function () {
-                    // Get the current column clicked
-                    var thisColumn = $(this).text();
-                    var order = $(this).data('order');
-                    var column = $(this).data('column');
-
-                    // Check if the column has changed
-                    if (thisColumn == column) {
-                        // column has not changed
-                        if (order == "asc") {
-                            order = "desc";
-                        } else {
-                            order = "asc";
-                        }
-                    } else {
-                        // column has changed
-                        column = thisColumn;
-                        order = "desc";
-                    }
-                    $(this).data('order', order);
-                    $(this).data('column', column);
-
-                    // Get the current column clicked
-                    var href = new URI($(this).attr('href')).addQuery("sort_dir", order);
-                    $(this).attr('href', href.normalizeQuery());
-                });
-            }
-        },
-
-        /**
-         * Search through the table and refresh it
-         *
-         */
-        filterTable: function (element) {
-            var el = $(element);
-            var pjaxContainer = el.data('pjax-target');
-
-            el.on('submit', function (e) {
-                "use strict";
-                e.preventDefault();
-                $.pjax.submit(e, pjaxContainer, {
-                    "push": true,
-                    "data": el.serialize(),
-                    "replace": false,
-                    "timeout": 5000,
-                    "scrollTo": 0,
-                    maxCacheLength: 0
-                })
-            });
-        },
-
         /**
          * Most of the time, this is similar
          *

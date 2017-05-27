@@ -1,6 +1,7 @@
 leantony.ty = leantony.ty || {};
 
 (function ($) {
+    "use strict";
 
     var TypeAhead = function (options) {
         var defaultOptions = {

@@ -1,7 +1,9 @@
 leantony.notify = leantony.notify || {};
 
 (function ($) {
-    var NOTIFICATION = function (opts) {
+    "use strict";
+
+    var notification = function (opts) {
         var defaults = {
             title: function () {
                 if (opts.type === undefined) {
@@ -26,7 +28,7 @@ leantony.notify = leantony.notify || {};
         this.opts = $.extend({}, defaults, opts || {});
     };
 
-    NOTIFICATION.prototype.send = function () {
+    notification.prototype.send = function () {
         var $this = this;
         var opts = $this.opts;
         var settings = $this.opts.settings || {"closeButton": true};
@@ -50,7 +52,7 @@ leantony.notify = leantony.notify || {};
     };
 
     leantony.notify = function (options) {
-        var obj = new NOTIFICATION(options);
+        var obj = new notification(options);
         obj.send();
     };
 

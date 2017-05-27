@@ -31,7 +31,7 @@ leantony.s2 = leantony.s2 || {};
         if (preselected) {
             // convert the json to a key value array
             var values = $.map(preselected, function (el, k) {
-                return [el, k]
+                return [el, k];
             });
             $(value).val(values).trigger("change");
         }
@@ -71,7 +71,7 @@ leantony.s2 = leantony.s2 || {};
                                 return {
                                     text: item[targetValue],
                                     id: item[targetKey]
-                                }
+                                };
                             });
                         };
 
@@ -80,7 +80,7 @@ leantony.s2 = leantony.s2 || {};
                         })).trigger('change');
                     },
                     error: function (data) {
-                        leantony.ajax.handleAjaxError(data, null)
+                        leantony.ajax.handleAjaxError(data, null);
                     }
                 });
 
@@ -126,7 +126,7 @@ leantony.s2 = leantony.s2 || {};
                             return {
                                 text: item[$valueAttribute],
                                 id: item[$keyAttribute]
-                            }
+                            };
                         })
                     };
                 }
