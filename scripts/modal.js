@@ -143,7 +143,7 @@ leantony.modal = leantony.modal || {};
                 },
                 beforeSend: function () {
                     // display a neat loader on the submit button
-                    $(e).attr('disabled', 'disabled').html('<span style="color: #ffffff;"><i class="fa fa-spinner"></i></span>');
+                    $(e).attr('disabled', 'disabled').html('<span style="color: #ffffff;"><i class="fa fa-spinner fa-spin"></i></span>');
                 },
                 complete: function () {
                     $(e).html(originalButtonHtml).removeAttr('disabled');
