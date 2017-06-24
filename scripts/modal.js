@@ -25,13 +25,9 @@ leantony.modal = leantony.modal || {};
                 $(this).removeData('bs.modal');
             },
             onShow: function (e, modal) {
-                var element = $('#' + modal.options.modal_id);
-                if (modal.options.onShow) {
-                    var spinner = modal.options.onShow(e, element);
-                    if (spinner) {
-                        element.find('.modal-content').html(spinner);
-                    }
-                }
+                // display a loader, when the modal is being displayed
+                var spinner_content = '<div class="row"><div class="col-md-12"><div class="text-center"><i class="fa fa-spinner fa-6x fa-spin color-primary mt30"></i></div></div></div>';
+                $('#' + modal.options.modal_id).find('.modal-content').html(spinner_content);
             },
             onLoaded: function (e, modal) {
                 if (modal.options.onLoaded) {
