@@ -20,7 +20,7 @@
     "select2": "^4.0.3",
     "select2-bootstrap-theme": "^0.1.0-beta.10",
     "jquery": "^2.2.4",
-    "blockUI": "*",
+    "blockUI": "^1.0.0",
     "lodash": "^4.17.4",
     "jquery-pjax": "^1.9.6",
     "toastr": "^2.1.3",
